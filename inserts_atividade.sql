@@ -9,7 +9,7 @@ VALUES
     ('67890123456', 'Gilberto Pessoa', 'gilberto@email.com', '2000-07-12'),
     ('78901234567', 'Fabiana de Almeida', 'fabiana@email.com', '1999-11-30'),
     ('89012345678', 'Ana Pessoa', 'ana@email.com', '2007-03-25'),
-	('11890023414', 'Daniel Abrantes', 'daniel@email.com', '1991-04-11'),
+    ('11890023414', 'Daniel Abrantes', 'daniel@email.com', '1991-04-11'),
     ('33301034101', 'Fabio Cortes', 'fabio@email.com', '1989-01-30'),
     ('29022345222', 'Cleber Amaral', 'camaral@email.com', '1998-09-23');
 
@@ -23,10 +23,10 @@ VALUES
     ('F005', 'CEMAC Farmacêutica', 'FarmE', 'cemac@farma.com'),
     ('F006', 'Quimio Farmacêutica', 'FarmF', 'quimeiofarma@farma.com'),
     ('F007', 'Quimera Farmacêutica', 'FarmG', 'quimerafarma@farma.com'),
-	('F008', 'Cooperativa Farmacêutica', 'FarmH', 'coopfarma@farma.com'),
+    ('F008', 'Cooperativa Farmacêutica', 'FarmH', 'coopfarma@farma.com'),
     ('F009', 'Vitta Farmacêutica', 'FarmI', 'vittafarma@farma.com'),
-	('F010', 'Vital Medical Farmacêutica', 'FarmJ', 'vmedical@farma.com'),
-	('F011', 'SANS Farmacêutica', 'FarmL', 'sansfarma@farma.com');
+    ('F010', 'Vital Medical Farmacêutica', 'FarmJ', 'vmedical@farma.com'),
+    ('F011', 'SANS Farmacêutica', 'FarmL', 'sansfarma@farma.com');
 
 -- Inserts para Medicamentos
 INSERT INTO medicamento (codigo, nome, codigo_fabricante, data_validade)
@@ -49,21 +49,21 @@ VALUES
     ('34567890123', 'MG', 'Belo Horizonte', 'Savassi', 'Avenida Tiradentes', 789, '05678-901'),
     ('45678901234', 'RS', 'Porto Alegre', 'Moinhos de Vento', 'Avenida Dom Pedro', 801, '06789-012'),
     ('56789012345', 'PR', 'Curitiba', 'Batel', 'Rua Emiliano Costa', 202, '07890-123'),
-	('67890123456', 'SP', 'São Paulo', 'Vila Madalena', 'Rua Das Alamedas', 303, '08901-234'),
+    ('67890123456', 'SP', 'São Paulo', 'Vila Madalena', 'Rua Das Alamedas', 303, '08901-234'),
     ('78901234567', 'SP', 'São Paulo', 'Ipiranga', 'Avenida Getulio Vargas', 585, '09012-345'),
     ('89012345678', 'SP', 'São Paulo', 'Liberdade', 'Rua Coronel Leonidas', 757, '09123-456');
 
 -- Inserts para Números de Telefone (cliente_telefone)
 INSERT INTO cliente_telefone (cpf_cliente, telefone_celular, telefone_residencial, telefone_comercial)
 VALUES
-    ('12345678901', 1198765421, 1123456789, 1133334411),
-    ('23456789012', 2199998881, 2145678901, 2112345678),
-    ('34567890123', 3198800771, 3123456789, 3155556600),
-    ('45678901234', 5199996662, 5123456789, 5133334488),
-    ('56789012345', 4199811771, 4123456789, 4144499556),
-    ('67890123456', 1199777662, 7123456789, 1133399441),
-    ('78901234567', 1199622555, 8123456789, 1133300442),
-    ('89012345678', 1199711440, 6123456789, 1133322443);
+    ('12345678901', '1198765421', '1123456789', '1133334411'),
+    ('23456789012', '2199998881', '2145678901', '2112345678'),
+    ('34567890123', '3198800771', '3123456789', '3155556600'),
+    ('45678901234', '5199996662', '5123456789', '5133334488'),
+    ('56789012345', '4199811771', '4123456789', '4144499556'),
+    ('67890123456', '1199777662', '7123456789', '1133399441'),
+    ('78901234567', '1199622555', '8123456789', '1133300442'),
+    ('89012345678', '1199711440', '6123456789', '1133322443');
 
 -- Inserts para Vendas
 INSERT INTO venda (codigo, quantidade, data_venda, cpf_cliente, codigo_medicamento)
@@ -73,5 +73,3 @@ VALUES
     ('V003', 3, '2023-02-25', '34567890123', 'M003'),
     ('V004', 3, '2023-04-30', '45678901234', 'M004'),
     ('V005', 4, '2023-02-10', '56789012345', 'M005');
-
-
