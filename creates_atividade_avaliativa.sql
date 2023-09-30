@@ -56,7 +56,7 @@ CREATE TABLE venda (
     data_venda DATE NOT NULL,
     cpf_cliente VARCHAR(11) NOT NULL,
     codigo_medicamento VARCHAR(10) NOT NULL,
-	quantidade INT NOT NULL CHECK(quantidade >= 0),
+    quantidade INT NOT NULL CHECK(quantidade >= 0),
     CONSTRAINT fk_venda_cliente FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf_cliente) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_venda_medicamento FOREIGN KEY (codigo_medicamento) REFERENCES medicamento(codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
