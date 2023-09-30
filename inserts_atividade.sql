@@ -44,14 +44,14 @@ VALUES
 -- Inserts para Endereços (cliente_endereco)
 INSERT INTO cliente_endereco (cpf_cliente, estado, cidade, bairro, rua, numero, cep)
 VALUES
-    ('12345678901', 'SP', 'São Paulo', 'Centro', 'Rua XV de Novembro', 123, '01234-567'),
-    ('23456789012', 'RJ', 'Rio de Janeiro', 'Copacabana', 'Avenida Beira Rio', 456, '04567-890'),
-    ('34567890123', 'MG', 'Belo Horizonte', 'Savassi', 'Avenida Tiradentes', 789, '05678-901'),
-    ('45678901234', 'RS', 'Porto Alegre', 'Moinhos de Vento', 'Avenida Dom Pedro', 801, '06789-012'),
-    ('56789012345', 'PR', 'Curitiba', 'Batel', 'Rua Emiliano Costa', 202, '07890-123'),
-    ('67890123456', 'SP', 'São Paulo', 'Vila Madalena', 'Rua Das Alamedas', 303, '08901-234'),
-    ('78901234567', 'SP', 'São Paulo', 'Ipiranga', 'Avenida Getulio Vargas', 585, '09012-345'),
-    ('89012345678', 'SP', 'São Paulo', 'Liberdade', 'Rua Coronel Leonidas', 757, '09123-456');
+    ('12345678901', 'SP', 'São Paulo', 'Centro', 'Rua XV de Novembro', '123', '01234-567'),
+    ('23456789012', 'RJ', 'Rio de Janeiro', 'Copacabana', 'Avenida Beira Rio', '456', '04567-890'),
+    ('34567890123', 'MG', 'Belo Horizonte', 'Savassi', 'Avenida Tiradentes', '789', '05678-901'),
+    ('45678901234', 'RS', 'Porto Alegre', 'Moinhos de Vento', 'Avenida Dom Pedro', '801', '06789-012'),
+    ('56789012345', 'PR', 'Curitiba', 'Batel', 'Rua Emiliano Costa', '202', '07890-123'),
+    ('67890123456', 'SP', 'São Paulo', 'Vila Madalena', 'Rua Das Alamedas', '303', '08901-234'),
+    ('78901234567', 'SP', 'São Paulo', 'Ipiranga', 'Avenida Getulio Vargas', '585', '09012-345'),
+    ('89012345678', 'SP', 'São Paulo', 'Liberdade', 'Rua Coronel Leonidas', '757', '09123-456');
 
 -- Inserts para Números de Telefone (cliente_telefone)
 INSERT INTO cliente_telefone (cpf_cliente, telefone_celular, telefone_residencial, telefone_comercial)
