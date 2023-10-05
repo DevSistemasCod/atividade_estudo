@@ -34,9 +34,9 @@ CREATE TABLE cliente_endereco (
 -- Tabela cliente_telefone
 CREATE TABLE cliente_telefone (
     cpf_cliente VARCHAR(15) PRIMARY KEY,
-    telefone_celular VARCHAR(15) NOT NULL CHECK(telefone_celular >= 0),
-    telefone_residencial VARCHAR(15) NOT NULL CHECK(telefone_residencial >= 0),
-    telefone_comercial VARCHAR(15) NOT NULL CHECK(telefone_comercial >= 0),
+    telefone_celular VARCHAR(15) NOT NULL,
+    telefone_residencial VARCHAR(15),
+    telefone_comercial VARCHAR(15),
     FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf_cliente) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_cliente_telefone_cliente FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf_cliente) ON DELETE CASCADE ON UPDATE CASCADE
 );
