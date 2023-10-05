@@ -1,24 +1,23 @@
--- 1) Selecione todos os clientes da tabela cliente que nasceram após 1990.
-SELECT * FROM cliente WHERE data_de_nascimento > '1990-12-31';
+-- 1) Selecione os nomes dos clientes da tabela cliente que nasceram após 1990.
+SELECT nome_cliente FROM cliente WHERE data_de_nascimento > '1990-12-31';
 
--- 2) Selecione todos os medicamentos da tabela medicamento com data de validade em 2024.
-SELECT * FROM medicamento WHERE data_validade BETWEEN '2024-01-01' AND '2024-12-31';
+-- 2) Selecione os nomes dos medicamentos da tabela medicamento com data de validade em 2024.
+SELECT nome FROM medicamento WHERE data_validade BETWEEN '2024-01-01' AND '2024-12-31';
 
--- 3) Selecione todos os clientes da tabela cliente que têm "Pessoa" em seus nomes.
+-- 3) Selecione todos os clientes da tabela cliente que possuem "Pessoa" em seus nomes.
 SELECT * FROM cliente WHERE nome_cliente LIKE '%Pessoa%';
 
--- 4)  Conte quantos medicamentos cada fabricante produz.
+-- 4) Conte quantos medicamentos cada fabricante produz  (identifique o fabricante pelo código).
 SELECT codigo_fabricante, COUNT(*) AS quantidade_de_medicamentos
 FROM medicamento GROUP BY codigo_fabricante;
 
 -- 5) Selecione o nome e o e-mail dos clientes que nasceram após 2000, ordene-os por nome em ordem decrescente e limite o resultado a 5 registros.
-SELECT nome_cliente, email
-FROM cliente
+SELECT nome_cliente, email FROM cliente
 WHERE data_de_nascimento > '2000-12-31'
 ORDER BY nome_cliente DESC LIMIT 5;
 
 -- Subqueries
--- 6)  Selecione os nomes e os cpf dos clientes que têm endereço em São Paulo.
+-- 6) Selecione o(s) nome(s) e o(s) cpf(s) do(s) cliente(s) que têm São Paulo como cidade em seu endereço.
 SELECT nome_cliente AS Cliente , cpf_cliente AS CPF
 FROM cliente
 WHERE cpf_cliente IN (
@@ -27,12 +26,10 @@ WHERE cpf_cliente IN (
 );
 
 -- 7) Encontre o nome de todos os clientes que compraram o medicamento 'Paracetamol'.
-SELECT nome_cliente AS  Nome
-FROM cliente
-WHERE cpf_cliente IN (
-    SELECT cpf_cliente FROM venda
-    WHERE codigo_medicamento = 'M001'
-);
+SELECT nome_cliente FROM cliente 
+WHERE cpf_cliente IN ( SELECT cpf_cliente FROM venda 
+    WHERE codigo_medicamento IN ( SELECT codigo FROM medicamento 
+        WHERE nome = 'Paracetamol'));
 
 -- 8) Encontre o nome do medicamento mais antigo registrado no sistema.
 SELECT nome AS Medicamento
@@ -41,10 +38,9 @@ WHERE data_validade = (
     SELECT MIN(data_validade) FROM medicamento
 );
 
--- 9) Conte quantos medicamentos diferentes estão registrados no sistema.
-SELECT COUNT(*)  AS "Quantidfade de Medicamentos Diferentes" 
-    FROM (SELECT nome FROM medicamento) 
-    AS medicamentos_diferentes;
+-- 9) Liste a quantidade de medicamentos diferentes estão registrados no sistema.
+SELECT COUNT(nome) AS Quantidfade_de_Medicamentos_Diferentes
+FROM (SELECT nome FROM medicamento) AS medicamentos_diferentes;
 
 -- INNER JOIN
 -- 10) Liste todos os medicamentos com seus nomes e os nomes de seus fabricantes.
