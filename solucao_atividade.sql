@@ -22,8 +22,7 @@ ORDER BY nome_cliente DESC LIMIT 5;
 SELECT nome_cliente AS Cliente , cpf_cliente AS CPF
 FROM cliente
 WHERE cpf_cliente IN (
-    SELECT cpf_cliente
-    FROM cliente_endereco
+    SELECT cpf_cliente FROM cliente_endereco
     WHERE cidade = 'São Paulo'
 );
 
@@ -31,28 +30,21 @@ WHERE cpf_cliente IN (
 SELECT nome_cliente AS  Nome
 FROM cliente
 WHERE cpf_cliente IN (
-    SELECT cpf_cliente
-    FROM venda
+    SELECT cpf_cliente FROM venda
     WHERE codigo_medicamento = 'M001'
 );
-
 
 -- 8) Encontre o nome do medicamento mais antigo registrado no sistema.
 SELECT nome AS Medicamento
 FROM medicamento
 WHERE data_validade = (
-    SELECT MIN(data_validade)
-    FROM medicamento
+    SELECT MIN(data_validade) FROM medicamento
 );
 
-
 -- 9) Conte quantos medicamentos diferentes estão registrados no sistema.
-SELECT COUNT(*)  AS "Quantidfade de Medicamentos Diferentes" FROM (
-    SELECT nome
-    FROM medicamento
-)AS medicamentos_diferentes;
-
-
+SELECT COUNT(*)  AS "Quantidfade de Medicamentos Diferentes" 
+    FROM (SELECT nome FROM medicamento) 
+    AS medicamentos_diferentes;
 
 -- INNER JOIN
 -- 10) Liste todos os medicamentos com seus nomes e os nomes de seus fabricantes.
@@ -64,7 +56,6 @@ INNER JOIN fabricante AS f ON m.codigo_fabricante = f.codigo;
 SELECT v.data_venda AS "Data de Venda:", c.nome_cliente AS Cliente
 FROM venda AS v
 INNER JOIN cliente AS c ON v.cpf_cliente = c.cpf_cliente;
-
 
 -- 12)  Liste os clientes com seus nomes, endereços e números de telefone.
 SELECT c.nome_cliente AS Cliente, ce.estado AS Estado, ct.telefone_celular AS Celular
@@ -79,7 +70,6 @@ FROM fabricante AS f
 LEFT JOIN medicamento AS m ON f.codigo = m.codigo_fabricante
 ORDER BY f.codigo;
 
-
 -- 14) Liste o nome e o cpf de todos os clientes inclusive os que não estão associados a tabela cliente_telefone e cliente_endereco, ordene por cpf.
 SELECT c.cpf_cliente As CPF, c.nome_cliente AS Nome
 FROM cliente AS c
@@ -87,13 +77,11 @@ LEFT JOIN cliente_telefone AS ct ON C.cpf_cliente = ct.cpf_cliente
 LEFT JOIN cliente_endereco AS ce ON C.cpf_cliente = ce.cpf_cliente
 ORDER BY c.cpf_cliente;
 
-
 -- RIGHT JOIN:
 -- 15)  Liste todos os medicamentos com seus nomes e os nomes de seus fabricantes. Inclua fabricantes sem medicamentos.
 SELECT m.nome as Medicamento, f.nome_fantasia AS Fabricante
 FROM medicamento AS m
 RIGHT JOIN fabricante AS f ON m.codigo_fabricante = f.codigo;
-
 
 -- 16) Liste os códigos das vendas e os clientes que as fizeram juntamente com os nomes dos clientes.
 SELECT v.codigo AS Codigo, c.nome_cliente AS Cliente
@@ -124,8 +112,6 @@ UNION
 SELECT c.nome_cliente AS Cliente, v.codigo AS CodigoVenda
 FROM cliente AS c
 RIGHT JOIN venda AS v ON c.cpf_cliente = v.cpf_cliente;
-
-
 
 -- CROSS JOIN
 -- 19) Combine todos os medicamentos com todos os fabricantes para criar uma lista de todas as possíveis combinações.
