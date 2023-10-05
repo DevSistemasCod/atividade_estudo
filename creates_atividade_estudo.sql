@@ -27,7 +27,6 @@ CREATE TABLE cliente_endereco (
     rua VARCHAR(30) NOT NULL,
     numero VARCHAR(10) NOT NULL,
     cep VARCHAR(15) NOT NULL,
-    FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf_cliente) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_cliente_endereco_cliente FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf_cliente) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -37,7 +36,6 @@ CREATE TABLE cliente_telefone (
     telefone_celular VARCHAR(15) NOT NULL,
     telefone_residencial VARCHAR(15),
     telefone_comercial VARCHAR(15),
-    FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf_cliente) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_cliente_telefone_cliente FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf_cliente) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
