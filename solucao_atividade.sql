@@ -43,30 +43,25 @@ SELECT COUNT(nome) AS Quantidfade_de_Medicamentos_Diferentes
 FROM (SELECT nome FROM medicamento) AS medicamentos_diferentes;
 
 -- INNER JOIN
--- 10) Liste todos os medicamentos com seus nomes e os nomes de seus fabricantes.
-SELECT m.nome AS Medicamento, f.nome_fantasia AS Fabricante
-FROM medicamento AS m
-INNER JOIN fabricante AS f ON m.codigo_fabricante = f.codigo;
-
--- 11) Liste todas as vendas com as datas de venda e os nomes dos clientes.
-SELECT v.data_venda AS "Data de Venda:", c.nome_cliente AS Cliente
+-- 10) Liste as datas das vendas e os nomes dos clientes.
+SELECT v.data_venda AS Data_da_Venda, c.nome_cliente AS Cliente
 FROM venda AS v
 INNER JOIN cliente AS c ON v.cpf_cliente = c.cpf_cliente;
 
--- 12)  Liste os clientes com seus nomes, endereços e números de telefone.
+-- 11)  Liste os nomes clientes com seus nomes, endereços e números de telefone.
 SELECT c.nome_cliente AS Cliente, ce.estado AS Estado, ct.telefone_celular AS Celular
 FROM cliente AS c
 INNER JOIN cliente_endereco AS ce ON C.cpf_cliente = ce.cpf_cliente
 INNER JOIN cliente_telefone AS ct ON C.cpf_cliente = ct.cpf_cliente;
 
 -- LEFT JOIN
--- 13) Liste o codigo, a nome fantasia e o email de todos os fabricantes inclusive os que não estão associados a nenhum medicamento ordene por codigo
+-- 12) Liste o codigo, a nome fantasia e o email de todos os fabricantes inclusive os que não estão associados a nenhum medicamento ordene por codigo
 SELECT f.codigo, f.nome_fantasia AS Fabricante, f.email
 FROM fabricante AS f
 LEFT JOIN medicamento AS m ON f.codigo = m.codigo_fabricante
 ORDER BY f.codigo;
 
--- 14) Liste o nome e o cpf de todos os clientes inclusive os que não estão associados a tabela cliente_telefone e cliente_endereco, ordene por cpf.
+-- 13) Liste o nome e o cpf de todos os clientes inclusive os que não estão associados a tabela cliente_telefone e cliente_endereco, ordene por cpf.
 SELECT c.cpf_cliente As CPF, c.nome_cliente AS Nome
 FROM cliente AS c
 LEFT JOIN cliente_telefone AS ct ON C.cpf_cliente = ct.cpf_cliente
@@ -74,49 +69,18 @@ LEFT JOIN cliente_endereco AS ce ON C.cpf_cliente = ce.cpf_cliente
 ORDER BY c.cpf_cliente;
 
 -- RIGHT JOIN:
--- 15)  Liste todos os medicamentos com seus nomes e os nomes de seus fabricantes. Inclua fabricantes sem medicamentos.
+-- 14)  Liste todos os medicamentos com seus nomes e os nomes de seus fabricantes. Inclua fabricantes sem medicamentos.
 SELECT m.nome as Medicamento, f.nome_fantasia AS Fabricante
 FROM medicamento AS m
 RIGHT JOIN fabricante AS f ON m.codigo_fabricante = f.codigo;
 
--- 16) Liste os códigos das vendas e os clientes que as fizeram juntamente com os nomes dos clientes.
+-- 15) Liste os códigos das vendas e os clientes que as fizeram juntamente com os nomes dos clientes.
 SELECT v.codigo AS Codigo, c.nome_cliente AS Cliente
 FROM venda AS v
 RIGHT JOIN cliente AS c ON v.cpf_cliente = c.cpf_cliente;
 
--- FULL JOIN:
--- 17) Listar todos os endereços dos clientes e os clientes que os possuem juntamente com os nomes dos clientes, concatene todas as colunas de endereço (cidade, bairro, rua e cep) em uma única coluna chamada "Endereco"e em outra coluna o nome do cliente. 
-SELECT CONCAT(ce.cidade, ', ',ce.bairro, ', ', ce.rua, ', ', ce.numero, ', ', ce.cep) AS Endereco, c.nome_cliente AS Cliente
-FROM cliente_endereco AS ce
-LEFT JOIN cliente AS c ON ce.cpf_cliente = c.cpf_cliente
-
-UNION
-
-SELECT CONCAT(ce.cidade, ', ',ce.bairro, ', ', ce.rua, ', ', ce.numero, ', ', ce.cep) AS Endereco, c.nome_cliente AS Cliente
-FROM cliente_endereco AS ce
-RIGHT JOIN cliente AS c ON ce.cpf_cliente = c.cpf_cliente;
-
--- 18)  Listar os nomes dos clientes e os códigos de vendas (incluindo clientes sem vendas):
--- Consulta usando LEFT JOIN
-SELECT c.nome_cliente AS Cliente, v.codigo AS Codigo
-FROM cliente AS c
-LEFT JOIN venda AS v ON c.cpf_cliente = v.cpf_cliente
-
-UNION
-
--- Consulta usando RIGHT JOIN
-SELECT c.nome_cliente AS Cliente, v.codigo AS CodigoVenda
-FROM cliente AS c
-RIGHT JOIN venda AS v ON c.cpf_cliente = v.cpf_cliente;
-
--- CROSS JOIN
--- 19) Combine todos os medicamentos com todos os fabricantes para criar uma lista de todas as possíveis combinações.
-SELECT m.nome AS Nome, f.nome_fantasia AS Fabricante
-FROM medicamento AS m
-CROSS JOIN fabricante AS f;
-
 -- SELF JOIN:
--- 20) Liste todos os cpfs dos clientes que residem na mesma cidade.
+-- 16) Liste todos os cpfs dos clientes que residem na mesma cidade.
 SELECT ce1.cpf_cliente AS CPF, ce1.cidade AS Cidade
 FROM cliente_endereco AS ce1
 INNER JOIN cliente_endereco AS ce2 ON ce1.cidade = ce2.cidade
